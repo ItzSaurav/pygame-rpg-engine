@@ -1,58 +1,92 @@
 # camera.py
 import pygame
+import random
 
 class Camera:
-    def __init__(self, screen_width, screen_height, world_width, world_height):
-        self.screen_width = screen_width
-        self.screen_height = screen_height
-        self.world_width = world_width
-        self.world_height = world_height
+    def __init__(self, target):
+        self.target = target
         self.x = 0
         self.y = 0
-        self.zoom = 1.0
-        self.smooth_follow = True
-        self.follow_speed = 0.1  # Lower = smoother
+        self.smoothness = 0.1  # Lower = smoother
+        self.shake_amount = 0
+        self.shake_duration = 0
+        self.offset_y = 100  # Reduced camera height offset
+        self.vertical_smoothness = 0.15  # Slightly different smoothness for vertical movement
+        self.debug_info = {}  # For debugging camera movement
         
-    def update(self, target):
-        if self.smooth_follow:
-            # Calculate target position
-            target_x = target.x - self.screen_width // 2
-            target_y = target.y - self.screen_height // 2
-            
-            # Smoothly interpolate to target position
-            self.x += (target_x - self.x) * self.follow_speed
-            self.y += (target_y - self.y) * self.follow_speed
-        else:
-            # Direct follow
-            self.x = target.x - self.screen_width // 2
-            self.y = target.y - self.screen_height // 2
+        # Screen dimensions
+        self.width = 800
+        self.height = 600
+        
+        # World boundaries
+        self.world_width = 4000
+        self.world_height = 3000
+    
+    def update(self):
+        # Calculate target position (centered on player)
+        target_x = self.target.x - self.width // 2
+        target_y = self.target.y - self.height // 2 + self.offset_y
+        
+        # Smoothly interpolate to target position with different smoothness for vertical movement
+        self.x += (target_x - self.x) * self.smoothness
+        self.y += (target_y - self.y) * self.vertical_smoothness
+        
+        # Apply camera shake if active
+        if self.shake_duration > 0:
+            self.shake_amount = max(0, self.shake_amount - 0.5)
+            self.shake_duration -= 1
+            self.x += random.uniform(-self.shake_amount, self.shake_amount)
+            self.y += random.uniform(-self.shake_amount, self.shake_amount)
         
         # Keep camera within world boundaries
-        self.x = max(0, min(self.x, self.world_width - self.screen_width))
-        self.y = max(0, min(self.y, self.world_height - self.screen_height))
+        self.x = max(0, min(self.x, self.world_width - self.width))
+        self.y = max(0, min(self.y, self.world_height - self.height))
         
+        # Debug info
+        self.debug_info = {
+            'target_x': target_x,
+            'target_y': target_y,
+            'camera_x': self.x,
+            'camera_y': self.y,
+            'player_y': self.target.y,
+            'is_jumping': self.target.jumping if hasattr(self.target, 'jumping') else False,
+            'on_ground': self.target.on_ground if hasattr(self.target, 'on_ground') else True
+        }
+        
+        # Print debug info
+        if self.debug_info:
+            print("Camera Debug:", self.debug_info)
+            self.debug_info = {}  # Clear debug info after printing
+    
+    def shake(self, amount, duration):
+        """Add camera shake effect"""
+        self.shake_amount = amount
+        self.shake_duration = duration
+    
     def apply(self, entity):
-        # Convert world coordinates to screen coordinates with zoom
-        screen_x = (entity.x - self.x) * self.zoom
-        screen_y = (entity.y - self.y) * self.zoom
-        return (screen_x, screen_y)
+        """Convert world coordinates to screen coordinates"""
+        if hasattr(entity, 'rect'):
+            return (entity.rect.x - self.x, entity.rect.y - self.y)
+        return (entity.x - self.x, entity.y - self.y)
     
     def apply_rect(self, rect):
-        # Convert a rectangle from world coordinates to screen coordinates
-        x, y = self.apply(rect)
-        return pygame.Rect(x, y, rect.width * self.zoom, rect.height * self.zoom)
+        """Convert world rectangle to screen rectangle"""
+        return pygame.Rect(
+            int(rect.x - self.x),
+            int(rect.y - self.y),
+            rect.width,
+            rect.height
+        )
     
     def get_visible_rect(self):
         # Return the visible area in world coordinates
         return pygame.Rect(
             self.x,
             self.y,
-            self.screen_width / self.zoom,
-            self.screen_height / self.zoom
+            self.width,
+            self.height
         )
-    
-    def zoom_in(self, factor=1.1):
-        self.zoom = min(self.zoom * factor, 2.0)
-    
-    def zoom_out(self, factor=0.9):
-        self.zoom = max(self.zoom * factor, 0.5)
+
+    def apply_obj(self, x, y):
+        """Convert world coordinates to screen coordinates for objects"""
+        return (x - self.x, y - self.y)
