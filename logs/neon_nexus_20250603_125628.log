@@ -1,0 +1,275 @@
+2025-06-03 12:56:29,948 - ERROR - Error Type: StateError
+2025-06-03 12:56:29,948 - ERROR - Error Message: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+2025-06-03 12:56:29,948 - ERROR - Context: Error updating game state
+2025-06-03 12:56:29,953 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: World.update() takes 2 positional arguments but 3 were given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+
+2025-06-03 12:56:29,953 - WARNING - Attempting to recover from state error...
+2025-06-03 12:56:29,953 - ERROR - Error Type: StateError
+2025-06-03 12:56:29,953 - ERROR - Error Message: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+2025-06-03 12:56:29,953 - ERROR - Context: Error updating game state
+2025-06-03 12:56:29,954 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: World.update() takes 2 positional arguments but 3 were given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+
+2025-06-03 12:56:29,954 - WARNING - Attempting to recover from state error...
+2025-06-03 12:56:29,954 - ERROR - Error Type: StateError
+2025-06-03 12:56:29,954 - ERROR - Error Message: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+2025-06-03 12:56:29,954 - ERROR - Context: Error updating game state
+2025-06-03 12:56:29,955 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: World.update() takes 2 positional arguments but 3 were given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+
+2025-06-03 12:56:29,955 - WARNING - Attempting to recover from state error...
+2025-06-03 12:56:29,955 - ERROR - Error Type: StateError
+2025-06-03 12:56:29,955 - ERROR - Error Message: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+2025-06-03 12:56:29,955 - ERROR - Context: Error updating game state
+2025-06-03 12:56:29,956 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: World.update() takes 2 positional arguments but 3 were given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+
+2025-06-03 12:56:29,956 - WARNING - Attempting to recover from state error...
+2025-06-03 12:56:29,956 - ERROR - Error Type: StateError
+2025-06-03 12:56:29,956 - ERROR - Error Message: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+2025-06-03 12:56:29,956 - ERROR - Context: Error updating game state
+2025-06-03 12:56:29,957 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: World.update() takes 2 positional arguments but 3 were given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+
+2025-06-03 12:56:29,957 - WARNING - Attempting to recover from state error...
+2025-06-03 12:56:29,957 - ERROR - Error Type: StateError
+2025-06-03 12:56:29,957 - ERROR - Error Message: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+2025-06-03 12:56:29,957 - ERROR - Context: Error updating game state
+2025-06-03 12:56:29,958 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: World.update() takes 2 positional arguments but 3 were given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+
+2025-06-03 12:56:29,958 - WARNING - Attempting to recover from state error...
+2025-06-03 12:56:29,958 - ERROR - Error Type: StateError
+2025-06-03 12:56:29,958 - ERROR - Error Message: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+2025-06-03 12:56:29,958 - ERROR - Context: Error updating game state
+2025-06-03 12:56:29,958 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: World.update() takes 2 positional arguments but 3 were given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+
+2025-06-03 12:56:29,958 - WARNING - Attempting to recover from state error...
+2025-06-03 12:56:29,958 - ERROR - Error Type: StateError
+2025-06-03 12:56:29,958 - ERROR - Error Message: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+2025-06-03 12:56:29,959 - ERROR - Context: Error updating game state
+2025-06-03 12:56:29,959 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: World.update() takes 2 positional arguments but 3 were given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+
+2025-06-03 12:56:29,959 - WARNING - Attempting to recover from state error...
+2025-06-03 12:56:29,959 - ERROR - Error Type: StateError
+2025-06-03 12:56:29,959 - ERROR - Error Message: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+2025-06-03 12:56:29,959 - ERROR - Context: Error updating game state
+2025-06-03 12:56:29,960 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: World.update() takes 2 positional arguments but 3 were given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+
+2025-06-03 12:56:29,960 - WARNING - Attempting to recover from state error...
+2025-06-03 12:56:29,960 - ERROR - Error Type: StateError
+2025-06-03 12:56:29,960 - ERROR - Error Message: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+2025-06-03 12:56:29,960 - ERROR - Context: Error updating game state
+2025-06-03 12:56:29,961 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: World.update() takes 2 positional arguments but 3 were given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+
+2025-06-03 12:56:29,961 - CRITICAL - Critical Error: Maximum error threshold exceeded
+2025-06-03 12:56:29,961 - CRITICAL - Forcing game shutdown...
+2025-06-03 12:56:30,074 - ERROR - Error Type: Cleanup
+2025-06-03 12:56:30,074 - ERROR - Error Message: Failed to save game: Failed to serialize world: cannot unpack non-iterable AreaType object
+2025-06-03 12:56:30,074 - ERROR - Context: Error during cleanup
+2025-06-03 12:56:30,077 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: World.update() takes 2 positional arguments but 3 were given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: World.update() takes 2 positional arguments but 3 were given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 271, in run
+    self.error_handler.handle_error(e, "StateError", "Error updating game state")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/error_handler.py", line 79, in handle_error
+    self.handle_critical_error("Maximum error threshold exceeded")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/error_handler.py", line 130, in handle_critical_error
+    sys.exit(1)
+    ~~~~~~~~^^^
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 177, in to_dict
+    'areas': {f"{x},{y}": area.to_dict() for (x, y), area in self.areas.items()},
+                                             ^^^^^^
+TypeError: cannot unpack non-iterable AreaType object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/save_manager.py", line 31, in save_game
+    'world': game.world.to_dict(),
+             ~~~~~~~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 182, in to_dict
+    raise WorldError(f"Failed to serialize world: {str(e)}")
+error_handler.WorldError: Failed to serialize world: cannot unpack non-iterable AreaType object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 334, in _cleanup
+    self.save_manager.save_game(self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/save_manager.py", line 42, in save_game
+    raise SaveError(f"Failed to save game: {str(e)}")
+error_handler.SaveError: Failed to save game: Failed to serialize world: cannot unpack non-iterable AreaType object
+
+2025-06-03 12:56:30,077 - CRITICAL - Critical Error: Maximum error threshold exceeded
+2025-06-03 12:56:30,077 - CRITICAL - Forcing game shutdown...

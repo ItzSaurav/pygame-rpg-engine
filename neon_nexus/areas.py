@@ -264,4 +264,8 @@ class Area:
             gate._draw_gate()
             area.gates.append(gate)
         
-        return area 
+        return area
+
+    def update(self):
+        """Update area state (stub for now)"""
+        pass 

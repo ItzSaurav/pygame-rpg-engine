@@ -1,0 +1,385 @@
+2025-06-03 13:00:36,792 - ERROR - Error Type: StateError
+2025-06-03 13:00:36,792 - ERROR - Error Message: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+2025-06-03 13:00:36,792 - ERROR - Context: Error updating game state
+2025-06-03 13:00:36,797 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 134, in update
+    area.update()
+    ^^^^^^^^^^^
+AttributeError: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 140, in update
+    raise WorldError(f"Failed to update world: {str(e)}")
+error_handler.WorldError: Failed to update world: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+
+2025-06-03 13:00:36,797 - WARNING - Attempting to recover from state error...
+2025-06-03 13:00:36,797 - ERROR - Error Type: StateError
+2025-06-03 13:00:36,797 - ERROR - Error Message: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+2025-06-03 13:00:36,798 - ERROR - Context: Error updating game state
+2025-06-03 13:00:36,798 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 134, in update
+    area.update()
+    ^^^^^^^^^^^
+AttributeError: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 140, in update
+    raise WorldError(f"Failed to update world: {str(e)}")
+error_handler.WorldError: Failed to update world: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+
+2025-06-03 13:00:36,799 - WARNING - Attempting to recover from state error...
+2025-06-03 13:00:36,799 - ERROR - Error Type: StateError
+2025-06-03 13:00:36,799 - ERROR - Error Message: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+2025-06-03 13:00:36,799 - ERROR - Context: Error updating game state
+2025-06-03 13:00:36,800 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 134, in update
+    area.update()
+    ^^^^^^^^^^^
+AttributeError: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 140, in update
+    raise WorldError(f"Failed to update world: {str(e)}")
+error_handler.WorldError: Failed to update world: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+
+2025-06-03 13:00:36,800 - WARNING - Attempting to recover from state error...
+2025-06-03 13:00:36,800 - ERROR - Error Type: StateError
+2025-06-03 13:00:36,800 - ERROR - Error Message: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+2025-06-03 13:00:36,800 - ERROR - Context: Error updating game state
+2025-06-03 13:00:36,801 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 134, in update
+    area.update()
+    ^^^^^^^^^^^
+AttributeError: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 140, in update
+    raise WorldError(f"Failed to update world: {str(e)}")
+error_handler.WorldError: Failed to update world: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+
+2025-06-03 13:00:36,801 - WARNING - Attempting to recover from state error...
+2025-06-03 13:00:36,802 - ERROR - Error Type: StateError
+2025-06-03 13:00:36,802 - ERROR - Error Message: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+2025-06-03 13:00:36,802 - ERROR - Context: Error updating game state
+2025-06-03 13:00:36,803 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 134, in update
+    area.update()
+    ^^^^^^^^^^^
+AttributeError: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 140, in update
+    raise WorldError(f"Failed to update world: {str(e)}")
+error_handler.WorldError: Failed to update world: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+
+2025-06-03 13:00:36,803 - WARNING - Attempting to recover from state error...
+2025-06-03 13:00:36,803 - ERROR - Error Type: StateError
+2025-06-03 13:00:36,803 - ERROR - Error Message: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+2025-06-03 13:00:36,803 - ERROR - Context: Error updating game state
+2025-06-03 13:00:36,804 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 134, in update
+    area.update()
+    ^^^^^^^^^^^
+AttributeError: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 140, in update
+    raise WorldError(f"Failed to update world: {str(e)}")
+error_handler.WorldError: Failed to update world: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+
+2025-06-03 13:00:36,804 - WARNING - Attempting to recover from state error...
+2025-06-03 13:00:36,804 - ERROR - Error Type: StateError
+2025-06-03 13:00:36,804 - ERROR - Error Message: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+2025-06-03 13:00:36,804 - ERROR - Context: Error updating game state
+2025-06-03 13:00:36,805 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 134, in update
+    area.update()
+    ^^^^^^^^^^^
+AttributeError: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 140, in update
+    raise WorldError(f"Failed to update world: {str(e)}")
+error_handler.WorldError: Failed to update world: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+
+2025-06-03 13:00:36,805 - WARNING - Attempting to recover from state error...
+2025-06-03 13:00:36,805 - ERROR - Error Type: StateError
+2025-06-03 13:00:36,805 - ERROR - Error Message: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+2025-06-03 13:00:36,805 - ERROR - Context: Error updating game state
+2025-06-03 13:00:36,806 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 134, in update
+    area.update()
+    ^^^^^^^^^^^
+AttributeError: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 140, in update
+    raise WorldError(f"Failed to update world: {str(e)}")
+error_handler.WorldError: Failed to update world: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+
+2025-06-03 13:00:36,806 - WARNING - Attempting to recover from state error...
+2025-06-03 13:00:36,806 - ERROR - Error Type: StateError
+2025-06-03 13:00:36,807 - ERROR - Error Message: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+2025-06-03 13:00:36,807 - ERROR - Context: Error updating game state
+2025-06-03 13:00:36,808 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 134, in update
+    area.update()
+    ^^^^^^^^^^^
+AttributeError: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 140, in update
+    raise WorldError(f"Failed to update world: {str(e)}")
+error_handler.WorldError: Failed to update world: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+
+2025-06-03 13:00:36,808 - WARNING - Attempting to recover from state error...
+2025-06-03 13:00:36,808 - ERROR - Error Type: StateError
+2025-06-03 13:00:36,808 - ERROR - Error Message: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+2025-06-03 13:00:36,809 - ERROR - Context: Error updating game state
+2025-06-03 13:00:36,810 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 134, in update
+    area.update()
+    ^^^^^^^^^^^
+AttributeError: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 140, in update
+    raise WorldError(f"Failed to update world: {str(e)}")
+error_handler.WorldError: Failed to update world: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+
+2025-06-03 13:00:36,810 - CRITICAL - Critical Error: Maximum error threshold exceeded
+2025-06-03 13:00:36,810 - CRITICAL - Forcing game shutdown...
+2025-06-03 13:00:36,921 - ERROR - Error Type: Cleanup
+2025-06-03 13:00:36,921 - ERROR - Error Message: Failed to save game: Failed to serialize world: cannot unpack non-iterable AreaType object
+2025-06-03 13:00:36,921 - ERROR - Context: Error during cleanup
+2025-06-03 13:00:36,924 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 134, in update
+    area.update()
+    ^^^^^^^^^^^
+AttributeError: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 301, in _update
+    self.world.update(self.camera, self.player)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 140, in update
+    raise WorldError(f"Failed to update world: {str(e)}")
+error_handler.WorldError: Failed to update world: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Failed to update world: 'Area' object has no attribute 'update'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 271, in run
+    self.error_handler.handle_error(e, "StateError", "Error updating game state")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/error_handler.py", line 79, in handle_error
+    self.handle_critical_error("Maximum error threshold exceeded")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/error_handler.py", line 130, in handle_critical_error
+    sys.exit(1)
+    ~~~~~~~~^^^
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 180, in to_dict
+    'areas': {f"{x},{y}": area.to_dict() for (x, y), area in self.areas.items()},
+                                             ^^^^^^
+TypeError: cannot unpack non-iterable AreaType object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/save_manager.py", line 31, in save_game
+    'world': game.world.to_dict(),
+             ~~~~~~~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 185, in to_dict
+    raise WorldError(f"Failed to serialize world: {str(e)}")
+error_handler.WorldError: Failed to serialize world: cannot unpack non-iterable AreaType object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 334, in _cleanup
+    self.save_manager.save_game(self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/save_manager.py", line 42, in save_game
+    raise SaveError(f"Failed to save game: {str(e)}")
+error_handler.SaveError: Failed to save game: Failed to serialize world: cannot unpack non-iterable AreaType object
+
+2025-06-03 13:00:36,924 - CRITICAL - Critical Error: Maximum error threshold exceeded
+2025-06-03 13:00:36,924 - CRITICAL - Forcing game shutdown...

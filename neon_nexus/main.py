@@ -132,6 +132,12 @@ class Game:
             self.clock = pygame.time.Clock()
             self.font = pygame.font.Font(None, 36)
             self.small_font = pygame.font.Font(None, 24)
+            self.debug_font = pygame.font.Font(None, 20)
+            
+            # UI constants
+            self.button_width = 120
+            self.button_height = 40
+            self.button_margin = 20
             
             # Initialize game components
             self._initialize_components()
@@ -150,15 +156,17 @@ class Game:
             self.save_manager = SaveManager()
             
             # Game objects
-            self.world = World()
+            self.world = World(4000, 3000, 32)  # width, height, chunk_size
             self.player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
-            self.camera = Camera(self.player)
+            self.camera = Camera(SCREEN_WIDTH, SCREEN_HEIGHT)
             self.player.camera = self.camera
             
             # Game state
             self.running = True
             self.fps = FPS
             self.show_inventory = False
+            self.show_debug = False
+            self.show_fast_travel = False
             self.last_time = time.time()
             self.frame_times = []
             self.state = 'menu'
@@ -178,8 +186,54 @@ class Game:
                 thumb_radius=20
             )
             
+            # Create action buttons
+            self.jump_button = Button(
+                SCREEN_WIDTH - self.button_width,
+                SCREEN_HEIGHT - self.button_margin - self.button_height,
+                self.button_width,
+                self.button_height,
+                "Jump",
+                (50, 50, 150),
+                (70, 70, 170)
+            )
+            
+            self.attack_button = Button(
+                SCREEN_WIDTH - self.button_margin * 2 - self.button_width * 2,
+                SCREEN_HEIGHT - self.button_margin - self.button_height,
+                self.button_width,
+                self.button_height,
+                "Attack",
+                (150, 50, 50),
+                (170, 70, 70)
+            )
+            
+            self.spell_button = Button(
+                SCREEN_WIDTH - self.button_margin * 3 - self.button_width * 3,
+                SCREEN_HEIGHT - self.button_margin - self.button_height,
+                self.button_width,
+                self.button_height,
+                "Spell",
+                (50, 150, 50),
+                (70, 170, 70)
+            )
+            
+            # Create spell selection buttons
+            self.spell_buttons = []
+            spell_types = ["fire", "ice", "lightning"]
+            for i, spell_type in enumerate(spell_types):
+                button = Button(
+                    SCREEN_WIDTH - self.button_width * 4 - self.button_margin * 4,
+                    SCREEN_HEIGHT - self.button_height * 2 - self.button_margin * 2 + i * (self.button_height + 10),
+                    self.button_width,
+                    self.button_height,
+                    spell_type.capitalize(),
+                    (50, 50, 50),
+                    (70, 70, 70)
+                )
+                self.spell_buttons.append(button)
+            
         except Exception as e:
-            self.error_handler.handle_error(e, "ResourceError", "Failed to initialize game components")
+            self.error_handler.handle_error(e, "ResourceError", "Failed to initialize components")
             raise
             
     def _create_menu_buttons(self):
@@ -251,7 +305,7 @@ class Game:
         try:
             if self.state == 'game':
                 self.world.update(self.camera, self.player)
-                self.player.update()
+                self.player.update(self.world)
                 self.camera.update()
                 
         except Exception as e:
@@ -454,20 +508,58 @@ class Game:
         if event.key == pygame.K_F3:  # Toggle debug info
             self.show_debug = not self.show_debug
     
+    def _handle_mousedown(self, event):
+        """Handle mouse button down events"""
+        try:
+            if self.state == 'menu':
+                for i, button in enumerate(self.menu_buttons):
+                    if button.handle_event(event):
+                        self.menu_selected = i
+                        self._handle_menu_select()
+                        return
+            elif self.state == 'game':
+                # Handle game controls
+                if self.joystick.handle_event(event):
+                    return
+                if self.jump_button.handle_event(event):
+                    self.player.jump()
+                    return
+                if self.attack_button.handle_event(event):
+                    self.player.attack()
+                    return
+                if self.spell_button.handle_event(event):
+                    # Get mouse position for spell target
+                    target_x, target_y = event.pos
+                    self.player.cast_spell(target_x, target_y)
+                    return
+                for i, button in enumerate(self.spell_buttons):
+                    if button.handle_event(event):
+                        spell_types = ["fire", "ice", "lightning"]
+                        self.player.switch_spell(spell_types[i])
+                        return
+                        
+        except Exception as e:
+            raise InputError(f"Error handling mouse events: {str(e)}")
+            
     def _handle_menu_select(self):
-        option = self.menu_options[self.menu_selected]
-        if option == "New Game":
-            self.__init__()
-            self.state = 'playing'
-        elif option == "Continue":
-            if self.save_manager.load_game(self):
-                self.state = 'playing'
-        elif option == "Settings":
-            self.state = 'settings'
-        elif option == "Controls":
-            self.state = 'controls'
-        elif option == "Quit":
-            self.running = False
+        """Handle menu selection"""
+        try:
+            option = self.menu_options[self.menu_selected]
+            if option == "New Game":
+                self.state = 'game'
+            elif option == "Continue":
+                if self.save_manager.has_save():
+                    self.save_manager.load_game(self)
+                    self.state = 'game'
+            elif option == "Settings":
+                self.state = 'settings'
+            elif option == "Controls":
+                self.state = 'controls'
+            elif option == "Quit":
+                self.running = False
+                
+        except Exception as e:
+            raise StateError(f"Error handling menu selection: {str(e)}")
     
     def _interact_with_environment(self):
         # Check for nearby levers, boxes, etc., and interact
@@ -490,17 +582,14 @@ class Game:
                     # TODO: Add physics for pushing
 
 def main():
-    """Main entry point with error handling"""
     try:
         game = Game()
         game.run()
     except Exception as e:
-        print(f"Critical error: {e}")
+        print(f"Critical error: {str(e)}")
         import traceback
         traceback.print_exc()
-    finally:
-        pygame.quit()
         sys.exit(1)
-        
+
 if __name__ == "__main__":
     main()

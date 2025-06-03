@@ -118,7 +118,7 @@ class World:
         except Exception as e:
             raise WorldError(f"Failed to get chunk at ({x}, {y}): {str(e)}")
     
-    def update(self, player):
+    def update(self, camera, player):
         """Update world state"""
         try:
             # Update current chunk
@@ -133,6 +133,9 @@ class World:
             for area in self.areas.values():
                 area.update()
                 
+            # Optionally, use camera for effects or chunk loading
+            # (currently not used, but available for future features)
+            
         except Exception as e:
             raise WorldError(f"Failed to update world: {str(e)}")
     

@@ -1,0 +1,295 @@
+2025-06-03 13:02:49,956 - ERROR - Error Type: InputError
+2025-06-03 13:02:49,957 - ERROR - Error Message: Error handling events: Error handling mouse events: Error handling menu selection: 'SaveManager' object has no attribute 'has_save'
+2025-06-03 13:02:49,957 - ERROR - Context: Error handling input
+2025-06-03 13:02:49,963 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 545, in _handle_menu_select
+    if self.save_manager.has_save():
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SaveManager' object has no attribute 'has_save'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 512, in _handle_mousedown
+    self._handle_menu_select()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 556, in _handle_menu_select
+    raise StateError(f"Error handling menu selection: {str(e)}")
+error_handler.StateError: Error handling menu selection: 'SaveManager' object has no attribute 'has_save'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 292, in _handle_events
+    self._handle_mousedown(event)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 536, in _handle_mousedown
+    raise InputError(f"Error handling mouse events: {str(e)}")
+error_handler.InputError: Error handling mouse events: Error handling menu selection: 'SaveManager' object has no attribute 'has_save'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 263, in run
+    self._handle_events()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 295, in _handle_events
+    raise InputError(f"Error handling events: {str(e)}")
+error_handler.InputError: Error handling events: Error handling mouse events: Error handling menu selection: 'SaveManager' object has no attribute 'has_save'
+
+2025-06-03 13:02:49,964 - WARNING - Attempting to recover from input error...
+2025-06-03 13:02:51,207 - ERROR - Error Type: StateError
+2025-06-03 13:02:51,207 - ERROR - Error Message: Error updating game state: Player.update() missing 1 required positional argument: 'world'
+2025-06-03 13:02:51,208 - ERROR - Context: Error updating game state
+2025-06-03 13:02:51,210 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 302, in _update
+    self.player.update()
+    ~~~~~~~~~~~~~~~~~~^^
+TypeError: Player.update() missing 1 required positional argument: 'world'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Player.update() missing 1 required positional argument: 'world'
+
+2025-06-03 13:02:51,210 - WARNING - Attempting to recover from state error...
+2025-06-03 13:02:51,210 - ERROR - Error Type: StateError
+2025-06-03 13:02:51,210 - ERROR - Error Message: Error updating game state: Player.update() missing 1 required positional argument: 'world'
+2025-06-03 13:02:51,210 - ERROR - Context: Error updating game state
+2025-06-03 13:02:51,211 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 302, in _update
+    self.player.update()
+    ~~~~~~~~~~~~~~~~~~^^
+TypeError: Player.update() missing 1 required positional argument: 'world'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Player.update() missing 1 required positional argument: 'world'
+
+2025-06-03 13:02:51,211 - WARNING - Attempting to recover from state error...
+2025-06-03 13:02:51,211 - ERROR - Error Type: StateError
+2025-06-03 13:02:51,211 - ERROR - Error Message: Error updating game state: Player.update() missing 1 required positional argument: 'world'
+2025-06-03 13:02:51,212 - ERROR - Context: Error updating game state
+2025-06-03 13:02:51,212 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 302, in _update
+    self.player.update()
+    ~~~~~~~~~~~~~~~~~~^^
+TypeError: Player.update() missing 1 required positional argument: 'world'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Player.update() missing 1 required positional argument: 'world'
+
+2025-06-03 13:02:51,212 - WARNING - Attempting to recover from state error...
+2025-06-03 13:02:51,212 - ERROR - Error Type: StateError
+2025-06-03 13:02:51,212 - ERROR - Error Message: Error updating game state: Player.update() missing 1 required positional argument: 'world'
+2025-06-03 13:02:51,212 - ERROR - Context: Error updating game state
+2025-06-03 13:02:51,213 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 302, in _update
+    self.player.update()
+    ~~~~~~~~~~~~~~~~~~^^
+TypeError: Player.update() missing 1 required positional argument: 'world'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Player.update() missing 1 required positional argument: 'world'
+
+2025-06-03 13:02:51,213 - WARNING - Attempting to recover from state error...
+2025-06-03 13:02:51,213 - ERROR - Error Type: StateError
+2025-06-03 13:02:51,213 - ERROR - Error Message: Error updating game state: Player.update() missing 1 required positional argument: 'world'
+2025-06-03 13:02:51,213 - ERROR - Context: Error updating game state
+2025-06-03 13:02:51,214 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 302, in _update
+    self.player.update()
+    ~~~~~~~~~~~~~~~~~~^^
+TypeError: Player.update() missing 1 required positional argument: 'world'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Player.update() missing 1 required positional argument: 'world'
+
+2025-06-03 13:02:51,214 - WARNING - Attempting to recover from state error...
+2025-06-03 13:02:51,215 - ERROR - Error Type: StateError
+2025-06-03 13:02:51,215 - ERROR - Error Message: Error updating game state: Player.update() missing 1 required positional argument: 'world'
+2025-06-03 13:02:51,215 - ERROR - Context: Error updating game state
+2025-06-03 13:02:51,216 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 302, in _update
+    self.player.update()
+    ~~~~~~~~~~~~~~~~~~^^
+TypeError: Player.update() missing 1 required positional argument: 'world'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Player.update() missing 1 required positional argument: 'world'
+
+2025-06-03 13:02:51,217 - WARNING - Attempting to recover from state error...
+2025-06-03 13:02:51,217 - ERROR - Error Type: StateError
+2025-06-03 13:02:51,217 - ERROR - Error Message: Error updating game state: Player.update() missing 1 required positional argument: 'world'
+2025-06-03 13:02:51,217 - ERROR - Context: Error updating game state
+2025-06-03 13:02:51,218 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 302, in _update
+    self.player.update()
+    ~~~~~~~~~~~~~~~~~~^^
+TypeError: Player.update() missing 1 required positional argument: 'world'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Player.update() missing 1 required positional argument: 'world'
+
+2025-06-03 13:02:51,218 - WARNING - Attempting to recover from state error...
+2025-06-03 13:02:51,218 - ERROR - Error Type: StateError
+2025-06-03 13:02:51,218 - ERROR - Error Message: Error updating game state: Player.update() missing 1 required positional argument: 'world'
+2025-06-03 13:02:51,218 - ERROR - Context: Error updating game state
+2025-06-03 13:02:51,219 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 302, in _update
+    self.player.update()
+    ~~~~~~~~~~~~~~~~~~^^
+TypeError: Player.update() missing 1 required positional argument: 'world'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Player.update() missing 1 required positional argument: 'world'
+
+2025-06-03 13:02:51,219 - WARNING - Attempting to recover from state error...
+2025-06-03 13:02:51,220 - ERROR - Error Type: StateError
+2025-06-03 13:02:51,220 - ERROR - Error Message: Error updating game state: Player.update() missing 1 required positional argument: 'world'
+2025-06-03 13:02:51,220 - ERROR - Context: Error updating game state
+2025-06-03 13:02:51,221 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 302, in _update
+    self.player.update()
+    ~~~~~~~~~~~~~~~~~~^^
+TypeError: Player.update() missing 1 required positional argument: 'world'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Player.update() missing 1 required positional argument: 'world'
+
+2025-06-03 13:02:51,221 - CRITICAL - Critical Error: Maximum error threshold exceeded
+2025-06-03 13:02:51,221 - CRITICAL - Forcing game shutdown...
+2025-06-03 13:02:51,332 - ERROR - Error Type: Cleanup
+2025-06-03 13:02:51,332 - ERROR - Error Message: Failed to save game: Failed to serialize world: cannot unpack non-iterable AreaType object
+2025-06-03 13:02:51,332 - ERROR - Context: Error during cleanup
+2025-06-03 13:02:51,336 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 302, in _update
+    self.player.update()
+    ~~~~~~~~~~~~~~~~~~^^
+TypeError: Player.update() missing 1 required positional argument: 'world'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 264, in run
+    self._update()
+    ~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 306, in _update
+    raise StateError(f"Error updating game state: {str(e)}")
+error_handler.StateError: Error updating game state: Player.update() missing 1 required positional argument: 'world'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 271, in run
+    self.error_handler.handle_error(e, "StateError", "Error updating game state")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/error_handler.py", line 79, in handle_error
+    self.handle_critical_error("Maximum error threshold exceeded")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/error_handler.py", line 130, in handle_critical_error
+    sys.exit(1)
+    ~~~~~~~~^^^
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 180, in to_dict
+    'areas': {f"{x},{y}": area.to_dict() for (x, y), area in self.areas.items()},
+                                             ^^^^^^
+TypeError: cannot unpack non-iterable AreaType object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/save_manager.py", line 31, in save_game
+    'world': game.world.to_dict(),
+             ~~~~~~~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/world.py", line 185, in to_dict
+    raise WorldError(f"Failed to serialize world: {str(e)}")
+error_handler.WorldError: Failed to serialize world: cannot unpack non-iterable AreaType object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 334, in _cleanup
+    self.save_manager.save_game(self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/save_manager.py", line 42, in save_game
+    raise SaveError(f"Failed to save game: {str(e)}")
+error_handler.SaveError: Failed to save game: Failed to serialize world: cannot unpack non-iterable AreaType object
+
+2025-06-03 13:02:51,337 - CRITICAL - Critical Error: Maximum error threshold exceeded
+2025-06-03 13:02:51,337 - CRITICAL - Forcing game shutdown...

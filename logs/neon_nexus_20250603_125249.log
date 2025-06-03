@@ -1,0 +1,84 @@
+2025-06-03 12:52:54,507 - ERROR - Error Type: InputError
+2025-06-03 12:52:54,508 - ERROR - Error Message: Error handling events: 'Game' object has no attribute '_handle_mousedown'
+2025-06-03 12:52:54,508 - ERROR - Context: Error handling input
+2025-06-03 12:52:54,514 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 292, in _handle_events
+    self._handle_mousedown(event)
+    ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Game' object has no attribute '_handle_mousedown'. Did you mean: '_handle_keydown'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 263, in run
+    self._handle_events()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 295, in _handle_events
+    raise InputError(f"Error handling events: {str(e)}")
+error_handler.InputError: Error handling events: 'Game' object has no attribute '_handle_mousedown'
+
+2025-06-03 12:52:54,514 - WARNING - Attempting to recover from input error...
+2025-06-03 12:52:54,990 - ERROR - Error Type: InputError
+2025-06-03 12:52:54,990 - ERROR - Error Message: Error handling events: 'Game' object has no attribute '_handle_mousedown'
+2025-06-03 12:52:54,990 - ERROR - Context: Error handling input
+2025-06-03 12:52:54,992 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 292, in _handle_events
+    self._handle_mousedown(event)
+    ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Game' object has no attribute '_handle_mousedown'. Did you mean: '_handle_keydown'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 263, in run
+    self._handle_events()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 295, in _handle_events
+    raise InputError(f"Error handling events: {str(e)}")
+error_handler.InputError: Error handling events: 'Game' object has no attribute '_handle_mousedown'
+
+2025-06-03 12:52:54,992 - WARNING - Attempting to recover from input error...
+2025-06-03 12:52:56,824 - ERROR - Error Type: InputError
+2025-06-03 12:52:56,825 - ERROR - Error Message: Error handling events: 'Game' object has no attribute '_handle_mousedown'
+2025-06-03 12:52:56,825 - ERROR - Context: Error handling input
+2025-06-03 12:52:56,826 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 292, in _handle_events
+    self._handle_mousedown(event)
+    ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Game' object has no attribute '_handle_mousedown'. Did you mean: '_handle_keydown'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 263, in run
+    self._handle_events()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 295, in _handle_events
+    raise InputError(f"Error handling events: {str(e)}")
+error_handler.InputError: Error handling events: 'Game' object has no attribute '_handle_mousedown'
+
+2025-06-03 12:52:56,827 - WARNING - Attempting to recover from input error...
+2025-06-03 12:52:57,008 - ERROR - Error Type: InputError
+2025-06-03 12:52:57,008 - ERROR - Error Message: Error handling events: 'Game' object has no attribute '_handle_mousedown'
+2025-06-03 12:52:57,008 - ERROR - Context: Error handling input
+2025-06-03 12:52:57,010 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 292, in _handle_events
+    self._handle_mousedown(event)
+    ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Game' object has no attribute '_handle_mousedown'. Did you mean: '_handle_keydown'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 263, in run
+    self._handle_events()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 295, in _handle_events
+    raise InputError(f"Error handling events: {str(e)}")
+error_handler.InputError: Error handling events: 'Game' object has no attribute '_handle_mousedown'
+
+2025-06-03 12:52:57,010 - WARNING - Attempting to recover from input error...

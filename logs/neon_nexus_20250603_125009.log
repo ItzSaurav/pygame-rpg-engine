@@ -1,0 +1,25 @@
+2025-06-03 12:50:09,864 - ERROR - Error Type: ResourceError
+2025-06-03 12:50:09,864 - ERROR - Error Message: World.__init__() missing 3 required positional arguments: 'width', 'height', and 'chunk_size'
+2025-06-03 12:50:09,864 - ERROR - Context: Failed to initialize game components
+2025-06-03 12:50:09,869 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 153, in _initialize_components
+    self.world = World()
+                 ~~~~~^^
+TypeError: World.__init__() missing 3 required positional arguments: 'width', 'height', and 'chunk_size'
+
+2025-06-03 12:50:09,869 - WARNING - Attempting to recover from unknown error...
+2025-06-03 12:50:09,869 - ERROR - Error Type: ResourceError
+2025-06-03 12:50:09,869 - ERROR - Error Message: World.__init__() missing 3 required positional arguments: 'width', 'height', and 'chunk_size'
+2025-06-03 12:50:09,869 - ERROR - Context: Failed to initialize game
+2025-06-03 12:50:09,869 - ERROR - Traceback:
+Traceback (most recent call last):
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 137, in __init__
+    self._initialize_components()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/admin/Documents/GitHub/PORT/neon_nexus/main.py", line 153, in _initialize_components
+    self.world = World()
+                 ~~~~~^^
+TypeError: World.__init__() missing 3 required positional arguments: 'width', 'height', and 'chunk_size'
+
+2025-06-03 12:50:09,869 - WARNING - Attempting to recover from unknown error...
