@@ -4,6 +4,7 @@ from collections import defaultdict
 import math
 import random
 from projectile import Projectile
+from error_handler import StateError, InputError
 
 class Item:
     def __init__(self, name, description, image=None):
@@ -100,14 +101,47 @@ class Player:
         }
     
     def _draw_player(self):
-        # Draw player body
-        pygame.draw.rect(self.surface, (100, 200, 255), (0, 0, self.width, self.height))
-        pygame.draw.rect(self.surface, (255, 255, 255), (0, 0, self.width, self.height), 2)
+        # Clear surface
+        self.surface.fill((0, 0, 0, 0))
         
-        # Draw eyes
-        eye_color = (255, 255, 255) if not self.jumping else (255, 100, 100)
-        pygame.draw.circle(self.surface, eye_color, (self.width//4, self.height//3), 4)
-        pygame.draw.circle(self.surface, eye_color, (3*self.width//4, self.height//3), 4)
+        # Draw body (muscular, tan)
+        body_color = (220, 180, 120)
+        pygame.draw.rect(self.surface, body_color, (8, 16, 16, 28), border_radius=6)
+        
+        # Draw green haramaki (belt)
+        haramaki_color = (40, 180, 40)
+        pygame.draw.rect(self.surface, haramaki_color, (8, 32, 16, 8), border_radius=3)
+        
+        # Draw head (tan)
+        pygame.draw.ellipse(self.surface, body_color, (8, 0, 16, 18))
+        
+        # Draw green hair (spiky)
+        hair_color = (60, 200, 60)
+        pygame.draw.ellipse(self.surface, hair_color, (8, -4, 16, 10))
+        pygame.draw.polygon(self.surface, hair_color, [(16, 0), (12, -6), (20, -6)])
+        pygame.draw.polygon(self.surface, hair_color, [(12, 2), (8, -2), (14, -4)])
+        pygame.draw.polygon(self.surface, hair_color, [(20, 2), (24, -2), (18, -4)])
+        
+        # Draw eyes (serious look)
+        pygame.draw.rect(self.surface, (0, 0, 0), (13, 7, 3, 2))
+        pygame.draw.rect(self.surface, (0, 0, 0), (18, 7, 3, 2))
+        
+        # Draw mouth sword (horizontal line, white blade, black hilt)
+        pygame.draw.line(self.surface, (255, 255, 255), (8, 14), (24, 14), 2)
+        pygame.draw.rect(self.surface, (0, 0, 0), (7, 13, 2, 4))
+        pygame.draw.rect(self.surface, (0, 0, 0), (23, 13, 2, 4))
+        
+        # Draw left sword (at side, angled)
+        pygame.draw.line(self.surface, (255, 255, 255), (6, 38), (2, 48), 2)
+        pygame.draw.rect(self.surface, (0, 0, 0), (1, 47, 4, 2))
+        
+        # Draw right sword (at side, angled)
+        pygame.draw.line(self.surface, (255, 255, 255), (26, 38), (30, 48), 2)
+        pygame.draw.rect(self.surface, (0, 0, 0), (29, 47, 4, 2))
+        
+        # Draw boots
+        pygame.draw.rect(self.surface, (60, 60, 60), (10, 44, 4, 4))
+        pygame.draw.rect(self.surface, (60, 60, 60), (18, 44, 4, 4))
         
         # Draw magic aura if casting
         if self.spell_cooldown > self.spell_cooldown_time - 10:
@@ -299,133 +333,263 @@ class Player:
                        screen_y - 30 - self.level_up_effect['current_frame'])
             screen.blit(text, text_pos)
     
-    def update(self):
-        # Update jump physics
-        self.update_jump()
-        
-        # Update cooldowns
-        if self.attack_cooldown > 0:
-            self.attack_cooldown -= 1
-        if self.spell_cooldown > 0:
-            self.spell_cooldown -= 1
-        if self.interaction_cooldown > 0:
-            self.interaction_cooldown -= 1
-        
-        # Update attack charge
-        if self.attack_charge < self.max_attack_charge:
-            self.attack_charge += 1
-        
-        # Regenerate mana
-        if self.mana < self.max_mana:
-            self.mana = min(self.max_mana, self.mana + self.mana_regen)
-        
-        # Update projectiles
-        for projectile in self.projectiles[:]:
-            projectile.update()
-            if not projectile.active:
-                self.projectiles.remove(projectile)
-        
-        # Update level-up effect
-        self.update_level_up_effect()
-    
-    def draw(self, screen, camera):
-        # Calculate screen position
-        screen_x, screen_y = camera.apply(self)
-        
-        # Draw player
-        screen.blit(self.surface, (screen_x, screen_y))
-        
-        # Draw projectiles
-        for projectile in self.projectiles:
-            projectile.draw(screen, camera)
-        
-        # Draw level-up effect
-        self.draw_level_up_effect(screen, camera)
-        
-        # Draw health bar
-        health_width = 40
-        health_height = 4
-        health_x = screen_x + (self.width - health_width) // 2
-        health_y = screen_y - 10
-        
-        # Background
-        pygame.draw.rect(screen, (100, 100, 100), 
-                        (health_x, health_y, health_width, health_height))
-        # Health
-        health_percent = self.health / self.max_health
-        pygame.draw.rect(screen, (255, 100, 100), 
-                        (health_x, health_y, 
-                         int(health_width * health_percent), health_height))
-        
-        # Draw mana bar
-        mana_width = 40
-        mana_height = 4
-        mana_x = screen_x + (self.width - mana_width) // 2
-        mana_y = screen_y - 5
-        
-        # Background
-        pygame.draw.rect(screen, (100, 100, 100), 
-                        (mana_x, mana_y, mana_width, mana_height))
-        # Mana
-        mana_color = {
-            "fire": (255, 100, 0),
-            "ice": (100, 200, 255),
-            "lightning": (255, 255, 100)
-        }[self.current_spell]
-        pygame.draw.rect(screen, mana_color, 
-                        (mana_x, mana_y, 
-                         int(mana_width * self.mana / self.max_mana), mana_height))
-        
-        # Draw attack charge bar
-        if self.attack_charge > 0:
-            charge_width = 40
-            charge_height = 2
-            charge_x = screen_x + (self.width - charge_width) // 2
-            charge_y = screen_y - 15
+    def update(self, world):
+        """Update player state"""
+        try:
+            # Apply gravity
+            self.velocity_y += self.gravity
             
-            # Background
-            pygame.draw.rect(screen, (100, 100, 100), 
-                           (charge_x, charge_y, charge_width, charge_height))
-            # Charge
-            charge_percent = self.attack_charge / self.max_attack_charge
-            charge_color = (255, 200, 50) if charge_percent >= 1 else (200, 200, 50)
-            pygame.draw.rect(screen, charge_color, 
-                           (charge_x, charge_y, 
-                            int(charge_width * charge_percent), charge_height))
-    
+            # Update position
+            self.x += self.velocity_x
+            self.y += self.velocity_y
+            
+            # Check collisions
+            self._handle_collisions(world)
+            
+            # Update cooldowns
+            if self.attack_cooldown > 0:
+                self.attack_cooldown -= 1
+            if self.spell_cooldown > 0:
+                self.spell_cooldown -= 1
+                
+            # Regenerate mana
+            if self.mana < self.max_mana:
+                self.mana = min(self.max_mana, self.mana + self.mana_regen)
+                
+        except Exception as e:
+            raise StateError(f"Failed to update player: {str(e)}")
+            
+    def _handle_collisions(self, world):
+        """Handle collisions with world objects"""
+        try:
+            # Get current chunk
+            chunk_x = int(self.x // world.chunk_size)
+            chunk_y = int(self.y // world.chunk_size)
+            chunk = world.get_chunk(chunk_x, chunk_y)
+            
+            # Check tile collisions
+            tile_x = int(self.x % world.chunk_size)
+            tile_y = int(self.y % world.chunk_size)
+            
+            # Check surrounding tiles
+            for dx in [-1, 0, 1]:
+                for dy in [-1, 0, 1]:
+                    check_x = tile_x + dx
+                    check_y = tile_y + dy
+                    
+                    if 0 <= check_x < world.chunk_size and 0 <= check_y < world.chunk_size:
+                        tile = chunk.get_tile(check_x, check_y)
+                        if tile and tile.is_solid:
+                            self._resolve_collision(tile, check_x, check_y)
+                            
+        except Exception as e:
+            raise StateError(f"Failed to handle collisions: {str(e)}")
+            
+    def _resolve_collision(self, tile, tile_x, tile_y):
+        """Resolve collision with a tile"""
+        try:
+            # Calculate collision rectangle
+            tile_rect = pygame.Rect(tile_x, tile_y, 1, 1)
+            player_rect = pygame.Rect(self.x, self.y, self.width, self.height)
+            
+            if player_rect.colliderect(tile_rect):
+                # Calculate overlap
+                overlap_x = min(player_rect.right - tile_rect.left, tile_rect.right - player_rect.left)
+                overlap_y = min(player_rect.bottom - tile_rect.top, tile_rect.bottom - player_rect.top)
+                
+                # Resolve collision
+                if overlap_x < overlap_y:
+                    if player_rect.centerx < tile_rect.centerx:
+                        self.x = tile_rect.left - player_rect.width
+                    else:
+                        self.x = tile_rect.right
+                    self.velocity_x = 0
+                else:
+                    if player_rect.centery < tile_rect.centery:
+                        self.y = tile_rect.top - player_rect.height
+                        self.velocity_y = 0
+                        self.on_ground = True
+                    else:
+                        self.y = tile_rect.bottom
+                        self.velocity_y = 0
+                        
+        except Exception as e:
+            raise StateError(f"Failed to resolve collision: {str(e)}")
+            
+    def move(self, direction):
+        """Move the player"""
+        try:
+            if direction == 'left':
+                self.velocity_x = -self.speed
+            elif direction == 'right':
+                self.velocity_x = self.speed
+            else:
+                self.velocity_x = 0
+                
+        except Exception as e:
+            raise InputError(f"Failed to move player: {str(e)}")
+            
+    def jump(self):
+        """Make the player jump"""
+        try:
+            if self.on_ground:
+                self.velocity_y = self.jump_power
+                self.on_ground = False
+                
+        except Exception as e:
+            raise InputError(f"Failed to make player jump: {str(e)}")
+            
+    def attack(self):
+        """Perform an attack"""
+        try:
+            if self.attack_cooldown <= 0:
+                # TODO: Implement attack logic
+                self.attack_cooldown = 30
+                
+        except Exception as e:
+            raise InputError(f"Failed to perform attack: {str(e)}")
+            
+    def cast_spell(self, spell_name):
+        """Cast a spell"""
+        try:
+            if spell_name not in self.spells:
+                raise InputError(f"Unknown spell: {spell_name}")
+                
+            spell = self.spells[spell_name]
+            if self.spell_cooldown <= 0 and self.mana >= spell['mana_cost']:
+                # TODO: Implement spell casting logic
+                self.mana -= spell['mana_cost']
+                self.spell_cooldown = spell['cooldown']
+                
+        except Exception as e:
+            raise InputError(f"Failed to cast spell: {str(e)}")
+            
+    def take_damage(self, amount):
+        """Take damage"""
+        try:
+            self.health = max(0, self.health - amount)
+            return self.health <= 0
+            
+        except Exception as e:
+            raise StateError(f"Failed to take damage: {str(e)}")
+            
+    def heal(self, amount):
+        """Heal the player"""
+        try:
+            self.health = min(self.max_health, self.health + amount)
+            
+        except Exception as e:
+            raise StateError(f"Failed to heal player: {str(e)}")
+            
+    def gain_xp(self, amount):
+        """Gain experience points"""
+        try:
+            self.xp += amount
+            while self.xp >= self.xp_to_next_level:
+                self.level_up()
+                
+        except Exception as e:
+            raise StateError(f"Failed to gain XP: {str(e)}")
+            
+    def level_up(self):
+        """Level up the player"""
+        try:
+            self.level += 1
+            self.xp -= self.xp_to_next_level
+            self.xp_to_next_level = int(self.xp_to_next_level * 1.5)
+            
+            # Increase stats
+            self.max_health += 10
+            self.health = self.max_health
+            self.max_mana += 5
+            self.mana = self.max_mana
+            self.speed += 0.2
+            
+        except Exception as e:
+            raise StateError(f"Failed to level up: {str(e)}")
+            
+    def draw(self, screen, camera):
+        """Draw the player"""
+        try:
+            # Draw player sprite
+            screen_x = self.x - camera.x
+            screen_y = self.y - camera.y
+            
+            # Draw body
+            pygame.draw.rect(screen, (210, 180, 140), (screen_x, screen_y, self.width, self.height))
+            
+            # Draw green haramaki
+            pygame.draw.rect(screen, (0, 255, 0), (screen_x + 8, screen_y + 20, self.width - 16, 20))
+            
+            # Draw swords
+            sword_color = (200, 200, 200)
+            if self.velocity_x > 0:
+                pygame.draw.line(screen, sword_color, (screen_x + self.width, screen_y + 10), 
+                               (screen_x + self.width + 20, screen_y + 10), 2)
+                pygame.draw.line(screen, sword_color, (screen_x + self.width, screen_y + 20), 
+                               (screen_x + self.width + 25, screen_y + 20), 2)
+                pygame.draw.line(screen, sword_color, (screen_x + self.width, screen_y + 30), 
+                               (screen_x + self.width + 15, screen_y + 30), 2)
+            else:
+                pygame.draw.line(screen, sword_color, (screen_x, screen_y + 10), 
+                               (screen_x - 20, screen_y + 10), 2)
+                pygame.draw.line(screen, sword_color, (screen_x, screen_y + 20), 
+                               (screen_x - 25, screen_y + 20), 2)
+                pygame.draw.line(screen, sword_color, (screen_x, screen_y + 30), 
+                               (screen_x - 15, screen_y + 30), 2)
+            
+            # Draw health bar
+            health_width = (self.width * self.health) // self.max_health
+            pygame.draw.rect(screen, (255, 0, 0), (screen_x, screen_y - 10, self.width, 5))
+            pygame.draw.rect(screen, (0, 255, 0), (screen_x, screen_y - 10, health_width, 5))
+            
+            # Draw mana bar
+            mana_width = (self.width * self.mana) // self.max_mana
+            pygame.draw.rect(screen, (0, 0, 0), (screen_x, screen_y - 5, self.width, 3))
+            pygame.draw.rect(screen, (0, 0, 255), (screen_x, screen_y - 5, mana_width, 3))
+            
+        except Exception as e:
+            raise StateError(f"Failed to draw player: {str(e)}")
+            
     def to_dict(self):
-        """Convert player data to dictionary for saving"""
-        return {
-            'x': self.x,
-            'y': self.y,
-            'health': self.health,
-            'max_health': self.max_health,
-            'mana': self.mana,
-            'max_mana': self.max_mana,
-            'level': self.level,
-            'xp': self.xp,
-            'xp_to_next_level': self.xp_to_next_level,
-            'inventory': self.inventory,
-            'selected_item': self.selected_item,
-            'spell_levels': self.spell_levels,
-            'current_spell': self.current_spell,
-            'speed': self.speed
-        }
-    
-    @classmethod
-    def from_dict(cls, data):
-        """Create player from saved data"""
-        player = cls(data['x'], data['y'])
-        player.health = data['health']
-        player.max_health = data['max_health']
-        player.mana = data['mana']
-        player.max_mana = data['max_mana']
-        player.level = data['level']
-        player.xp = data['xp']
-        player.xp_to_next_level = data['xp_to_next_level']
-        player.inventory = data['inventory']
-        player.selected_item = data['selected_item']
-        player.spell_levels = data['spell_levels']
-        player.current_spell = data['current_spell']
-        player.speed = data['speed']
-        return player
+        """Convert player state to dictionary"""
+        try:
+            return {
+                'x': self.x,
+                'y': self.y,
+                'health': self.health,
+                'max_health': self.max_health,
+                'mana': self.mana,
+                'max_mana': self.max_mana,
+                'level': self.level,
+                'xp': self.xp,
+                'xp_to_next_level': self.xp_to_next_level,
+                'inventory': self.inventory,
+                'selected_item': self.selected_item,
+                'spell_levels': self.spell_levels,
+                'current_spell': self.current_spell,
+                'speed': self.speed
+            }
+        except Exception as e:
+            raise StateError(f"Failed to serialize player: {str(e)}")
+            
+    def from_dict(self, data):
+        """Load player state from dictionary"""
+        try:
+            self.x = data['x']
+            self.y = data['y']
+            self.health = data['health']
+            self.max_health = data['max_health']
+            self.mana = data['mana']
+            self.max_mana = data['max_mana']
+            self.level = data['level']
+            self.xp = data['xp']
+            self.xp_to_next_level = data['xp_to_next_level']
+            self.inventory = data['inventory']
+            self.selected_item = data['selected_item']
+            self.spell_levels = data['spell_levels']
+            self.current_spell = data['current_spell']
+            self.speed = data['speed']
+            
+        except Exception as e:
+            raise StateError(f"Failed to deserialize player: {str(e)}")

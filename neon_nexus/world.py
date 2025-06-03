@@ -9,6 +9,7 @@ from world_map import WorldMap
 from portal import Portal
 from environment import Box, Lever, PressurePlate, DestructibleBlock
 from enemy import Enemy, Boss
+from error_handler import WorldError
 
 class Chunk:
     def __init__(self, x, y, size=32):
@@ -57,13 +58,14 @@ class Chunk:
                                     self.tiles[ny][nx] = 'sand'
 
 class World:
-    def __init__(self):
-        self.chunk_size = 32
-        self.world_width = 100 * self.chunk_size
-        self.world_height = 100 * self.chunk_size
-        self.chunks = {}
+    def __init__(self, width, height, chunk_size):
+        self.width = width
+        self.height = height
+        self.chunk_size = chunk_size
         self.areas = {}
-        self.gates = []
+        self.gates = {}
+        self.visited_chunks = set()
+        self.world_map = WorldMap(width, height, chunk_size)
         self.portals = []  # List of portals
         self.boxes = []
         self.levers = []
@@ -86,11 +88,9 @@ class World:
             self.areas[area_type] = Area(area_type)
             self.areas[area_type].generate_gates(
                 self.chunk_size,
-                self.world_width,
-                self.world_height
+                self.width,
+                self.height
             )
-        # Create world map
-        self.world_map = WorldMap(self.world_width, self.world_height, self.chunk_size)
         # Load tile images
         self.tile_images = {
             'grass': pygame.Surface((self.chunk_size, self.chunk_size)),
@@ -109,142 +109,104 @@ class World:
         self.tile_images['path'].fill((200, 200, 200))
     
     def get_chunk(self, x, y):
-        """Get or generate a chunk at the specified coordinates"""
-        chunk_x = x // self.chunk_size
-        chunk_y = y // self.chunk_size
-        chunk_key = (chunk_x, chunk_y)
-        
-        if chunk_key not in self.chunks:
-            self.chunks[chunk_key] = self.generate_chunk(chunk_x, chunk_y)
-            # Mark chunk as visited on the map
-            self.world_map.mark_chunk_visited(chunk_x, chunk_y)
-        
-        return self.chunks[chunk_key]
+        """Get or create a chunk at the specified coordinates"""
+        try:
+            chunk_key = (x, y)
+            if chunk_key not in self.areas:
+                self.areas[chunk_key] = Area(x, y, self.chunk_size)
+            return self.areas[chunk_key]
+        except Exception as e:
+            raise WorldError(f"Failed to get chunk at ({x}, {y}): {str(e)}")
     
-    def update(self, camera, player=None):
+    def update(self, player):
         """Update world state"""
-        # Update current chunk on map
-        visible_rect = camera.get_visible_rect()
-        self.world_map.update_current_chunk(visible_rect.x, visible_rect.y)
-        
-        # Update map
-        self.world_map.update()
-        
-        # Update visible chunks
-        visible_chunks = set()
-        for x in range(-1, 2):
-            for y in range(-1, 2):
-                chunk_x = int(visible_rect.x // self.chunk_size) + x
-                chunk_y = int(visible_rect.y // self.chunk_size) + y
-                self.get_chunk(chunk_x * self.chunk_size, chunk_y * self.chunk_size)
-                visible_chunks.add((chunk_x, chunk_y))
-        
-        # Remove chunks that are too far away
-        for chunk_key in list(self.chunks.keys()):
-            if chunk_key not in visible_chunks:
-                del self.chunks[chunk_key]
-        
-        # Check for player proximity to portals
-        if player:
-            player_chunk_x = int(player.x // self.chunk_size)
-            player_chunk_y = int(player.y // self.chunk_size)
-            for portal in self.portals:
-                if portal.chunk_x == player_chunk_x and portal.chunk_y == player_chunk_y:
-                    # Calculate distance from player to portal
-                    dx = player.x - (portal.chunk_x * self.chunk_size + portal.x)
-                    dy = player.y - (portal.chunk_y * self.chunk_size + portal.y)
-                    distance = (dx * dx + dy * dy) ** 0.5
-                    if distance < 50:  # Unlock if player is within 50 pixels
-                        portal.unlocked = True
-        
-        # Update environmental objects
-        for box in self.boxes:
-            box.update()
-        for plate in self.plates:
-            plate.update(player)
-        for enemy in self.enemies:
-            enemy.update(player)
-        for boss in self.bosses:
-            boss.update(player)
+        try:
+            # Update current chunk
+            chunk_x = int(player.x // self.chunk_size)
+            chunk_y = int(player.y // self.chunk_size)
+            self.visited_chunks.add((chunk_x, chunk_y))
+            
+            # Update world map
+            self.world_map.update_current_chunk(chunk_x, chunk_y)
+            
+            # Update areas
+            for area in self.areas.values():
+                area.update()
+                
+        except Exception as e:
+            raise WorldError(f"Failed to update world: {str(e)}")
     
     def draw(self, screen, camera):
         """Draw the world"""
-        # Draw chunks
-        for chunk_key, chunk in self.chunks.items():
-            chunk_x, chunk_y = chunk_key
-            screen_x = chunk_x * self.chunk_size - camera.x
-            screen_y = chunk_y * self.chunk_size - camera.y
+        try:
+            # Calculate visible chunks
+            start_x = max(0, int(camera.x // self.chunk_size) - 1)
+            start_y = max(0, int(camera.y // self.chunk_size) - 1)
+            end_x = min(self.width // self.chunk_size, int((camera.x + screen.get_width()) // self.chunk_size) + 1)
+            end_y = min(self.height // self.chunk_size, int((camera.y + screen.get_height()) // self.chunk_size) + 1)
             
-            # Draw tiles
-            for y in range(self.chunk_size):
-                for x in range(self.chunk_size):
-                    tile = chunk[y][x]
-                    if tile:
-                        # Use the correct tile image
-                        tile_img = self.tile_images.get(tile)
-                        if tile_img:
-                            screen.blit(tile_img, (screen_x + x, screen_y + y))
-                        else:
-                            # fallback: draw a magenta pixel for unknown tile types
-                            pygame.draw.rect(screen, (255, 0, 255), (screen_x + x, screen_y + y, 1, 1))
-        
-        # Draw portals
-        for portal in self.portals:
-            portal.draw(screen, camera, self.chunk_size)
-        
-        # Draw map
-        self.world_map.draw(screen)
-        
-        # Draw environmental objects
-        for box in self.boxes:
-            box.draw(screen, camera)
-        for lever in self.levers:
-            lever.draw(screen, camera)
-        for plate in self.plates:
-            plate.draw(screen, camera)
-        for destructible in self.destructibles:
-            destructible.draw(screen, camera)
-        for enemy in self.enemies:
-            enemy.draw(screen, camera)
-        for boss in self.bosses:
-            boss.draw(screen, camera)
+            # Draw visible chunks
+            for x in range(start_x, end_x + 1):
+                for y in range(start_y, end_y + 1):
+                    chunk = self.get_chunk(x, y)
+                    chunk.draw(screen, camera)
+                    
+            # Draw gates
+            for gate in self.gates.values():
+                gate.draw(screen, camera)
+                
+        except Exception as e:
+            raise WorldError(f"Failed to draw world: {str(e)}")
+    
+    def add_gate(self, x, y, gate_type, target_x, target_y):
+        """Add a gate to the world"""
+        try:
+            gate_key = (x, y)
+            if gate_key in self.gates:
+                raise WorldError(f"Gate already exists at ({x}, {y})")
+                
+            self.gates[gate_key] = GateType(x, y, gate_type, target_x, target_y)
+            
+        except Exception as e:
+            raise WorldError(f"Failed to add gate: {str(e)}")
     
     def to_dict(self):
-        """Convert world data to dictionary for saving"""
-        return {
-            'chunks': {str(k): v for k, v in self.chunks.items()},
-            'areas': {area_type.name: area.to_dict() for area_type, area in self.areas.items()},
-            'gates': [gate.to_dict() for gate in self.gates],
-            'world_map': self.world_map.to_dict(),
-            'portals': [portal.to_dict() for portal in self.portals],
-            'boxes': [box.to_dict() for box in self.boxes],
-            'levers': [lever.to_dict() for lever in self.levers],
-            'plates': [plate.to_dict() for plate in self.plates],
-            'destructibles': [destructible.to_dict() for destructible in self.destructibles],
-            'enemies': [enemy.to_dict() for enemy in self.enemies],
-            'bosses': [boss.to_dict() for boss in self.bosses]
-        }
+        """Convert world state to dictionary"""
+        try:
+            return {
+                'areas': {f"{x},{y}": area.to_dict() for (x, y), area in self.areas.items()},
+                'gates': {f"{x},{y}": gate.to_dict() for (x, y), gate in self.gates.items()},
+                'visited_chunks': [f"{x},{y}" for x, y in self.visited_chunks]
+            }
+        except Exception as e:
+            raise WorldError(f"Failed to serialize world: {str(e)}")
     
-    @classmethod
-    def from_dict(cls, data):
-        """Create world from saved data"""
-        world = cls()
-        world.chunks = {eval(k): v for k, v in data['chunks'].items()}
-        world.areas = {AreaType[area_type]: Area.from_dict(area_data) 
-                      for area_type, area_data in data['areas'].items()}
-        world.gates = [Gate.from_dict(gate_data) for gate_data in data['gates']]
-        world.world_map = WorldMap.from_dict(data['world_map'], 
-                                           world.world_width, 
-                                           world.world_height, 
-                                           world.chunk_size)
-        world.portals = [Portal.from_dict(portal_data) for portal_data in data.get('portals', [])]
-        world.boxes = [Box.from_dict(box_data) for box_data in data.get('boxes', [])]
-        world.levers = [Lever.from_dict(lever_data) for lever_data in data.get('levers', [])]
-        world.plates = [PressurePlate.from_dict(plate_data) for plate_data in data.get('plates', [])]
-        world.destructibles = [DestructibleBlock.from_dict(destructible_data) for destructible_data in data.get('destructibles', [])]
-        world.enemies = [Enemy.from_dict(enemy_data) for enemy_data in data.get('enemies', [])]
-        world.bosses = [Boss.from_dict(boss_data) for boss_data in data.get('bosses', [])]
-        return world
+    def from_dict(self, data):
+        """Load world state from dictionary"""
+        try:
+            # Clear existing state
+            self.areas.clear()
+            self.gates.clear()
+            self.visited_chunks.clear()
+            
+            # Load areas
+            for key, area_data in data['areas'].items():
+                x, y = map(int, key.split(','))
+                area = Area(x, y, self.chunk_size)
+                area.from_dict(area_data)
+                self.areas[(x, y)] = area
+                
+            # Load gates
+            for key, gate_data in data['gates'].items():
+                x, y = map(int, key.split(','))
+                gate = GateType(x, y, gate_data['type'], gate_data['target_x'], gate_data['target_y'])
+                self.gates[(x, y)] = gate
+                
+            # Load visited chunks
+            self.visited_chunks = {tuple(map(int, key.split(','))) for key in data['visited_chunks']}
+            
+        except Exception as e:
+            raise WorldError(f"Failed to deserialize world: {str(e)}")
 
     def generate_chunk(self, chunk_x, chunk_y):
         """Generate a new chunk at the given coordinates and return its tile data as a 2D array of tile types."""

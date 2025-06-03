@@ -17,7 +17,7 @@ class WorldMap:
         
         # UI settings
         self.visible = False
-        self.map_scale = 0.2  # Scale of the minimap relative to screen
+        self.map_scale = 0.35  # Scale of the minimap relative to screen (increased from 0.2)
         self.blink_timer = 0
         self.blink_speed = 30  # Frames per blink
         self.map_padding = 20  # Padding from screen edges
