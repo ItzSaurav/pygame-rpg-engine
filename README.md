@@ -1,12 +1,12 @@
-# 🎮 PORT (Neon Nexus)
+# 🎮 Pygame RPG Engine
 
 > **A 2D action/RPG built with Python, Pygame, and procedural generation.**
 
-Welcome to Neon Nexus! This is a custom game I built to push my Python skills beyond standard web backends and into real-time rendering, procedural world generation, and game loops.
+Welcome to the Pygame RPG Engine! This is a custom engine I built to push my Python skills beyond standard web backends and into real-time rendering, procedural world generation, and game loops.
 
 ## 🕹 What is it?
 
-Neon Nexus is a top-down 2D action game featuring a retro neon aesthetic. You play as a character exploring procedurally generated worlds, battling enemies with projectiles, and navigating through dynamic areas using portals.
+This is a top-down 2D action game engine featuring a retro aesthetic. You play as a character exploring procedurally generated worlds, battling enemies with projectiles, and navigating through dynamic areas using portals.
 
 ### 🌟 Key Features
 - **Procedural World Generation:** Uses Perlin noise to generate organic, non-repetitive landscapes on the fly.
@@ -26,8 +26,8 @@ If you want to play around with the code or just try the game, here's the setup:
 
 1. **Clone the repo:**
    ```bash
-   git clone https://github.com/ItzSaurav/PORT.git
-   cd PORT
+   git clone https://github.com/ItzSaurav/pygame-rpg-engine.git
+   cd pygame-rpg-engine
    ```
 
 2. **Install the dependencies:**
