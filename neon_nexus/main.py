@@ -9,14 +9,17 @@ from joystick import Joystick
 from error_handler import ErrorHandler, GameError, ResourceError, SaveError, StateError, InputError, WorldError
 
 # Constants
+# Standard 800x600 resolution so it runs smoothly on any laptop
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
-FPS = 60
+FPS = 60  # Lock game loop to 60 frames per second for consistent movement physics
 
+# Color palette for menus and UI text
 MENU_BG = (20, 20, 40)
 MENU_TEXT = (255, 255, 255)
 MENU_SELECTED = (100, 200, 255)
 MENU_DISABLED = (100, 100, 100)
+
 
 class Button:
     def __init__(self, x, y, width, height, text, color, hover_color, draggable=False, icon=None):
