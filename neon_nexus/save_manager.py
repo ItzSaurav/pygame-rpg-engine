@@ -23,6 +23,10 @@ class SaveManager:
         except Exception as e:
             raise SaveError(f"Failed to check save existence: {str(e)}")
             
+    def has_save(self):
+        """Alias for save_exists to support menu continue check"""
+        return self.save_exists()
+            
     def save_game(self, game):
         """Save game state"""
         try:

@@ -22,6 +22,7 @@ class Player:
         self.jump_power = 15
         self.super_jump_power = 25
         self.gravity = 0.8
+        self.velocity_x = 0
         self.velocity_y = 0
         self.on_ground = False
         self.jumping = False
@@ -433,7 +434,7 @@ class Player:
         """Make the player jump"""
         try:
             if self.on_ground:
-                self.velocity_y = self.jump_power
+                self.velocity_y = -self.jump_power
                 self.on_ground = False
                 
         except Exception as e:
@@ -590,6 +591,7 @@ class Player:
             self.spell_levels = data['spell_levels']
             self.current_spell = data['current_spell']
             self.speed = data['speed']
+            return self
             
         except Exception as e:
             raise StateError(f"Failed to deserialize player: {str(e)}")

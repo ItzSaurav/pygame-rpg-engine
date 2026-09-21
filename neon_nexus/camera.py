@@ -22,9 +22,16 @@ class Camera:
         self.world_width = 4000
         self.world_height = 3000
     
-    def update(self, target):
+    def update(self, target=None):
         """Update camera position"""
         try:
+            if target is not None:
+                self.target = target
+            elif hasattr(self, 'target') and self.target is not None:
+                target = self.target
+            else:
+                return
+
             # Update target position
             self.target_x = target.x - self.width // 2
             self.target_y = target.y - self.height // 2 + self.offset_y

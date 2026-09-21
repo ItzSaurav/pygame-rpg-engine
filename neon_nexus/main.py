@@ -299,6 +299,15 @@ class Game:
                     self._handle_keydown(event)
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     self._handle_mousedown(event)
+            
+            if self.state == 'game':
+                keys = pygame.key.get_pressed()
+                if keys[pygame.K_a] or keys[pygame.K_LEFT]:
+                    self.player.move('left')
+                elif keys[pygame.K_d] or keys[pygame.K_RIGHT]:
+                    self.player.move('right')
+                else:
+                    self.player.velocity_x = 0
                     
         except Exception as e:
             raise InputError(f"Error handling events: {str(e)}")
@@ -309,7 +318,7 @@ class Game:
             if self.state == 'game':
                 self.world.update(self.camera, self.player)
                 self.player.update(self.world)
-                self.camera.update()
+                self.camera.update(self.player)
                 
         except Exception as e:
             raise StateError(f"Error updating game state: {str(e)}")
@@ -491,7 +500,7 @@ class Game:
         elif self.state == 'controls':
             if event.key == pygame.K_ESCAPE or event.key == pygame.K_RETURN:
                 self.state = 'menu'
-        elif self.state == 'playing':
+        elif self.state in ('game', 'playing'):
             if event.key == pygame.K_ESCAPE:
                 self.save_manager.save_game(self)
                 self.state = 'menu'
@@ -505,7 +514,7 @@ class Game:
                 self._interact_with_environment()
             elif event.key == pygame.K_1:
                 self.player.selected_item = list(self.player.inventory.keys())[0] if self.player.inventory else None
-            elif event.key == pygame.K_SPACE:
+            elif event.key in (pygame.K_SPACE, pygame.K_w, pygame.K_UP):
                 self.player.jump()
         
         if event.key == pygame.K_F3:  # Toggle debug info
